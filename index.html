@@ -106,11 +106,6 @@
             display: block;
             margin: 0 auto;
         }
-        .pdf-viewer {
-            width: 100%;
-            height: 500px;
-            border: none;
-        }
     </style>
 </head>
 
@@ -217,17 +212,17 @@
                         <div class="certificate-item bg-white rounded-lg overflow-hidden shadow-md border border-gray-100" data-category="training">
                             <div class="relative">
                                 <img src="SERTIFIKAT FREY.jpg" 
-                                        alt="Sertifikat Coding Camp" 
-                                        class="w-full h-48 object-cover cursor-pointer" 
-                                        onclick="openCertificateModal('https: //example.com/path-to-your-certificate-image.jpg', 'Sertifikat Coding Camp')">
+                                     alt="Sertifikat Coding Camp" 
+                                     class="w-full h-48 object-cover cursor-pointer" 
+                                     onclick="openCertificateModal('SERTIFIKAT FREY.jpg', 'Sertifikat Coding Camp')">
                                 <span class="certificate-badge bg-blue-100 text-blue-800">Pelatihan</span>
                             </div>
                             <div class="p-4">
                                 <h3 class="font-bold text-lg mb-2">Coding Camp - Intro to Software Engineering</h3>
-                                <p class="text-gray-600">Sertifikat penyelesaian kursus online 1 minggu tentang Pengantar Rekayasa Perangkat Lunak dari Revolu.</p>
+                                <p class="text-gray-600">Sertifikat penyelesaian kursus online 1 minggu tentang Pengantar Rekayasa Perangkat Lunak dari RevoU.</p>
                                 <div class="mt-4 flex justify-between items-center">
-                                    <span class="text-sm text-gray-500">2023</span>
-                                    <button onclick="openCertificateModal('https: //drive.google.com/file/d/12DqkUg-rais7COJsm7Cee6wB32ZYNRxM/view?usp=sharing', 'Sertifikat Coding Camp')" 
+                                    <span class="text-sm text-gray-500">2025</span>
+                                    <button onclick="openCertificateModal('SERTIFIKAT FREY.jpg', 'Sertifikat Coding Camp')" 
                                             class="text-blue-500 hover:underline">Lihat Detail</button>
                                 </div>
                             </div>
@@ -241,7 +236,7 @@
                 <div class="certificate-modal-content">
                     <div class="flex justify-between items-center bg-gray-100 p-4 sticky top-0">
                         <h3 id="modalTitle" class="text-xl font-bold"></h3>
-                        <button onclick="closeCertificateModal(https://drive.google.com/file/d/12DqkUg-rais7COJsm7Cee6wB32ZYNRxM/view?usp=sharing)" class="text-gray-500 hover:text-gray-700">
+                        <button onclick="closeCertificateModal()" class="text-gray-500 hover:text-gray-700">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -251,7 +246,7 @@
                         <!-- Konten akan dimuat dinamis disini -->
                     </div>
                     <div class="bg-gray-100 p-4 sticky bottom-0 text-center">
-                        <a id="downloadLink" href="#" download class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                        <a href="https://drive.google.com/file/d/12DqkUg-rais7COJsm7Cee6wB32ZYNRxM/view?usp=sharing" target="_blank" class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
                             Download Sertifikat
                         </a>
                     </div>
@@ -270,13 +265,13 @@
                                 <div>
                                     <label for="name" class="block mb-2 font-medium">Nama:</label>
                                     <input type="text" id="name" required
-                                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400">
+                                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400">
                                 </div>
                                 
                                 <div>
                                     <label for="birthdate" class="block mb-2 font-medium">Tanggal Lahir:</label>
                                     <input type="date" id="birthdate" required
-                                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400">
+                                           class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400">
                                 </div>
                                 
                                 <div>
@@ -294,7 +289,7 @@
                                 <div>
                                     <label for="message" class="block mb-2 font-medium">Pesan:</label>
                                     <textarea id="message" rows="4" required
-                                                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400"></textarea>
+                                              class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400"></textarea>
                                 </div>
                                 
                                 <button type="submit"
@@ -434,22 +429,11 @@
                 document.body.style.overflow = 'hidden';
                 
                 const modalContent = document.getElementById('modalContent');
-                const downloadLink = document.getElementById('downloadLink');
                 
-                // Set download link
-                downloadLink.href = src;
-                
-                if (src.endsWith('.pdf')) {
-                    // Jika PDF, tampilkan embed viewer
-                    modalContent.innerHTML = `
-                        <embed src="${src}" type="application/pdf" class="pdf-viewer">
-                    `;
-                } else {
-                    // Jika gambar, tampilkan gambar
-                    modalContent.innerHTML = `
-                        <img src="${src}" alt="${title}" class="mx-auto max-w-full max-h-[70vh]">
-                    `;
-                }
+                // Tampilkan gambar sertifikat
+                modalContent.innerHTML = `
+                    <img src="${src}" alt="${title}" class="mx-auto max-w-full max-h-[70vh]">
+                `;
             }
             
             function closeCertificateModal() {
