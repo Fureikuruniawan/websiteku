@@ -62,6 +62,55 @@
             max-width: 500px;
             width: 90%;
         }
+        .certificate-item {
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .certificate-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        .certificate-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        .certificate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .certificate-modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            width: 800px;
+            background: white;
+            border-radius: 8px;
+            overflow: auto;
+        }
+        .certificate-modal img {
+            max-width: 100%;
+            max-height: 70vh;
+            display: block;
+            margin: 0 auto;
+        }
+        .pdf-viewer {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
     </style>
 </head>
 
@@ -93,6 +142,13 @@
                             </a>
                         </td>
                         
+                        <!-- Sertifikat -->
+                        <td class="transition-all duration-200 hover:bg-yellow-300">
+                            <a href="#certificates" class="block py-2 px-4 border border-yellow-400 rounded-lg bg-white hover:bg-yellow-100 text-center font-medium">
+                                Sertifikat
+                            </a>
+                        </td>
+                        
                         <!-- Hubungi Saya -->
                         <td class="transition-all duration-200 hover:bg-yellow-300">
                             <a href="#contact" class="block py-2 px-4 border border-yellow-400 rounded-lg bg-white hover:bg-yellow-100 text-center font-medium">
@@ -115,6 +171,9 @@
                         <div class="flex justify-center gap-4">
                             <a href="#about" class="bg-yellow-400 hover:bg-yellow-500 text-white px-6 py-2 rounded-lg transition">
                                 Tentang Saya
+                            </a>
+                            <a href="#certificates" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg transition">
+                                Sertifikat
                             </a>
                             <a href="#contact" class="bg-gray-800 hover:bg-gray-900 text-white px-6 py-2 rounded-lg transition">
                                 Hubungi Saya
@@ -147,176 +206,265 @@
                 </div>
             </section>
 
-      <!-- Contact Section -->
-        <section id="contact" class="bg-white">
-            <div class="container mx-auto px-4 py-12">
-                <h1 class="text-3xl font-bold text-center mb-8">Hubungi Saya</h1>
-                
-                <div class="form-with-result">
-                    <!-- Form Input -->
-                    <div class="bg-gray-50 p-6 rounded-lg shadow-md">
-                        <form id="contactForm" class="space-y-4">
-                            <div>
-                                <label for="name" class="block mb-2 font-medium">Nama:</label>
-                                <input type="text" id="name" required
-                                       class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400">
+            <!-- Certificates Section -->
+            <section id="certificates" class="bg-white">
+                <div class="container mx-auto px-4 py-12">
+                    <h2 class="text-3xl font-bold text-center mb-8">Sertifikat Saya</h2>
+                    <p class="text-center mb-12 max-w-2xl mx-auto">Berikut adalah koleksi sertifikat yang telah saya dapatkan dari berbagai pelatihan dan kegiatan.</p>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Certificate 1 - Coding Camp -->
+                        <div class="certificate-item bg-white rounded-lg overflow-hidden shadow-md border border-gray-100" data-category="training">
+                            <div class="relative">
+                                <img src="SERTIFIKAT FREY.jpg" 
+                                        alt="Sertifikat Coding Camp" 
+                                        class="w-full h-48 object-cover cursor-pointer" 
+                                        onclick="openCertificateModal('https: //example.com/path-to-your-certificate-image.jpg', 'Sertifikat Coding Camp')">
+                                <span class="certificate-badge bg-blue-100 text-blue-800">Pelatihan</span>
                             </div>
-                            
-                            <div>
-                                <label for="birthdate" class="block mb-2 font-medium">Tanggal Lahir:</label>
-                                <input type="date" id="birthdate" required
-                                       class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400">
-                            </div>
-                            
-                            <div>
-                                <label class="block mb-2 font-medium">Jenis Kelamin:</label>
-                                <div class="flex gap-4">
-                                    <label class="inline-flex items-center">
-                                        <input type="radio" name="gender" value="Laki-laki" required class="mr-2"> Laki-laki
-                                    </label>
-                                    <label class="inline-flex items-center">
-                                        <input type="radio" name="gender" value="Perempuan" class="mr-2"> Perempuan
-                                    </label>
+                            <div class="p-4">
+                                <h3 class="font-bold text-lg mb-2">Coding Camp - Intro to Software Engineering</h3>
+                                <p class="text-gray-600">Sertifikat penyelesaian kursus online 1 minggu tentang Pengantar Rekayasa Perangkat Lunak dari Revolu.</p>
+                                <div class="mt-4 flex justify-between items-center">
+                                    <span class="text-sm text-gray-500">2023</span>
+                                    <button onclick="openCertificateModal('https: //drive.google.com/file/d/12DqkUg-rais7COJsm7Cee6wB32ZYNRxM/view?usp=sharing', 'Sertifikat Coding Camp')" 
+                                            class="text-blue-500 hover:underline">Lihat Detail</button>
                                 </div>
                             </div>
-                            
-                            <div>
-                                <label for="message" class="block mb-2 font-medium">Pesan:</label>
-                                <textarea id="message" rows="4" required
-                                          class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400"></textarea>
-                            </div>
-                            
-                            <button type="submit"
-                                    class="w-full bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-4 rounded-lg transition">
-                                Kirim Pesan
-                            </button>
-                        </form>
-                    </div>
-                    
-                    <!-- Tempat untuk hasil -->
-                    <div id="resultContainer" class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-400">
-                        <h2 class="text-2xl font-bold mb-4 text-yellow-600">Data Terkirim</h2>
-                        <div id="resultContent" class="space-y-3">
-                            <!-- Hasil akan ditampilkan di sini -->
-                            <p class="text-gray-500 italic">Belum ada data yang dikirim</p>
                         </div>
                     </div>
                 </div>
+            </section>
+
+            <!-- Certificate Modal -->
+            <div id="certificateModal" class="certificate-modal">
+                <div class="certificate-modal-content">
+                    <div class="flex justify-between items-center bg-gray-100 p-4 sticky top-0">
+                        <h3 id="modalTitle" class="text-xl font-bold"></h3>
+                        <button onclick="closeCertificateModal(https://drive.google.com/file/d/12DqkUg-rais7COJsm7Cee6wB32ZYNRxM/view?usp=sharing)" class="text-gray-500 hover:text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="modalContent" class="p-6">
+                        <!-- Konten akan dimuat dinamis disini -->
+                    </div>
+                    <div class="bg-gray-100 p-4 sticky bottom-0 text-center">
+                        <a id="downloadLink" href="#" download class="inline-block bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">
+                            Download Sertifikat
+                        </a>
+                    </div>
+                </div>
             </div>
-        </section>
-    </main>
 
-    <footer class="bg-gray-800 text-white p-4 text-center">
-        <p>&copy; <span id="currentYear"></span> Frey. All rights reserved.</p>
-    </footer>
+            <!-- Contact Section -->
+            <section id="contact" class="bg-white">
+                <div class="container mx-auto px-4 py-12">
+                    <h1 class="text-3xl font-bold text-center mb-8">Hubungi Saya</h1>
+                    
+                    <div class="form-with-result">
+                        <!-- Form Input -->
+                        <div class="bg-gray-50 p-6 rounded-lg shadow-md">
+                            <form id="contactForm" class="space-y-4">
+                                <div>
+                                    <label for="name" class="block mb-2 font-medium">Nama:</label>
+                                    <input type="text" id="name" required
+                                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400">
+                                </div>
+                                
+                                <div>
+                                    <label for="birthdate" class="block mb-2 font-medium">Tanggal Lahir:</label>
+                                    <input type="date" id="birthdate" required
+                                            class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400">
+                                </div>
+                                
+                                <div>
+                                    <label class="block mb-2 font-medium">Jenis Kelamin:</label>
+                                    <div class="flex gap-4">
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" name="gender" value="Laki-laki" required class="mr-2"> Laki-laki
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="radio" name="gender" value="Perempuan" class="mr-2"> Perempuan
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="message" class="block mb-2 font-medium">Pesan:</label>
+                                    <textarea id="message" rows="4" required
+                                                class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-yellow-400"></textarea>
+                                </div>
+                                
+                                <button type="submit"
+                                        class="w-full bg-yellow-400 hover:bg-yellow-500 text-white py-2 px-4 rounded-lg transition">
+                                    Kirim Pesan
+                                </button>
+                            </form>
+                        </div>
+                        
+                        <!-- Tempat untuk hasil -->
+                        <div id="resultContainer" class="bg-white p-6 rounded-lg shadow-md border-l-4 border-yellow-400">
+                            <h2 class="text-2xl font-bold mb-4 text-yellow-600">Data Terkirim</h2>
+                            <div id="resultContent" class="space-y-3">
+                                <!-- Hasil akan ditampilkan di sini -->
+                                <p class="text-gray-500 italic">Belum ada data yang dikirim</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
 
-    <script>
-        // Set tahun footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+        <footer class="bg-gray-800 text-white p-4 text-center">
+            <p>&copy; <span id="currentYear"></span> Frey. All rights reserved.</p>
+        </footer>
+
+        <script>
+            // Set tahun footer
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
+            
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Highlight active section in navigation
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('header nav a');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (window.scrollY >= (sectionTop - 100)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active-section');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.parentElement.classList.add('bg-yellow-100');
+                        link.classList.add('active-section');
+                    } else {
+                        link.parentElement.classList.remove('bg-yellow-100');
+                    }
+                });
+            });
+            
+            // Form submission
+            document.getElementById('contactForm').addEventListener('submit', function(e) {
                 e.preventDefault();
                 
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
+                // Ambil nilai form
+                const formData = {
+                    name: document.getElementById('name').value,
+                    birthdate: document.getElementById('birthdate').value,
+                    gender: document.querySelector('input[name="gender"]:checked').value,
+                    message: document.getElementById('message').value
+                };
                 
-                if (targetElement) {
-                    targetElement.scrollIntoView({
+                // Format tanggal
+                const formattedDate = new Date(formData.birthdate).toLocaleDateString('id-ID', {
+                    weekday: 'long',
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric'
+                });
+                
+                // Buat HTML untuk hasil
+                const resultHTML = `
+                    <div>
+                        <h3 class="font-semibold">Nama:</h3>
+                        <p class="text-gray-700">${formData.name}</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Tanggal Lahir:</h3>
+                        <p class="text-gray-700">${formattedDate}</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Jenis Kelamin:</h3>
+                        <p class="text-gray-700">${formData.gender}</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">Pesan:</h3>
+                        <p class="text-gray-700 whitespace-pre-line">${formData.message}</p>
+                    </div>
+                    <div class="mt-4 p-3 bg-yellow-50 rounded-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span class="text-yellow-700">Pesan telah terkirim!</span>
+                    </div>
+                `;
+                
+                // Tampilkan hasil di samping form
+                document.getElementById('resultContent').innerHTML = resultHTML;
+                
+                // Pada mobile, scroll ke hasil
+                if (window.innerWidth <= 768) {
+                    document.getElementById('resultContainer').scrollIntoView({ 
                         behavior: 'smooth',
                         block: 'start'
                     });
                 }
             });
-        });
-        
-        // Highlight active section in navigation
-        const sections = document.querySelectorAll('section');
-        const navLinks = document.querySelectorAll('header nav a');
-        
-        window.addEventListener('scroll', () => {
-            let current = '';
             
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop;
-                const sectionHeight = section.clientHeight;
+            // Certificate modal functions
+            function openCertificateModal(src, title) {
+                document.getElementById('modalTitle').textContent = title;
+                document.getElementById('certificateModal').style.display = 'flex';
+                document.body.style.overflow = 'hidden';
                 
-                if (window.scrollY >= (sectionTop - 100)) {
-                    current = section.getAttribute('id');
-                }
-            });
-            
-            navLinks.forEach(link => {
-                link.classList.remove('active-section');
-                if (link.getAttribute('href').includes(current)) {
-                    link.parentElement.classList.add('bg-yellow-100');
-                    link.classList.add('active-section');
+                const modalContent = document.getElementById('modalContent');
+                const downloadLink = document.getElementById('downloadLink');
+                
+                // Set download link
+                downloadLink.href = src;
+                
+                if (src.endsWith('.pdf')) {
+                    // Jika PDF, tampilkan embed viewer
+                    modalContent.innerHTML = `
+                        <embed src="${src}" type="application/pdf" class="pdf-viewer">
+                    `;
                 } else {
-                    link.parentElement.classList.remove('bg-yellow-100');
+                    // Jika gambar, tampilkan gambar
+                    modalContent.innerHTML = `
+                        <img src="${src}" alt="${title}" class="mx-auto max-w-full max-h-[70vh]">
+                    `;
+                }
+            }
+            
+            function closeCertificateModal() {
+                document.getElementById('certificateModal').style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+            
+            // Close modal when clicking outside
+            document.getElementById('certificateModal').addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeCertificateModal();
                 }
             });
-        });
-        
-        // Form submission
-        document.getElementById('contactForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Ambil nilai form
-            const formData = {
-                name: document.getElementById('name').value,
-                birthdate: document.getElementById('birthdate').value,
-                gender: document.querySelector('input[name="gender"]:checked').value,
-                message: document.getElementById('message').value
-            };
-            
-            // Format tanggal
-            const formattedDate = new Date(formData.birthdate).toLocaleDateString('id-ID', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-            
-            // Buat HTML untuk hasil
-            const resultHTML = `
-                <div>
-                    <h3 class="font-semibold">Nama:</h3>
-                    <p class="text-gray-700">${formData.name}</p>
-                </div>
-                <div>
-                    <h3 class="font-semibold">Tanggal Lahir:</h3>
-                    <p class="text-gray-700">${formattedDate}</p>
-                </div>
-                <div>
-                    <h3 class="font-semibold">Jenis Kelamin:</h3>
-                    <p class="text-gray-700">${formData.gender}</p>
-                </div>
-                <div>
-                    <h3 class="font-semibold">Pesan:</h3>
-                    <p class="text-gray-700 whitespace-pre-line">${formData.message}</p>
-                </div>
-                <div class="mt-4 p-3 bg-yellow-50 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600 inline mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span class="text-yellow-700">Pesan telah terkirim!</span>
-                </div>
-            `;
-            
-            // Tampilkan hasil di samping form
-            document.getElementById('resultContent').innerHTML = resultHTML;
-            
-            // Pada mobile, scroll ke hasil
-            if (window.innerWidth <= 768) {
-                document.getElementById('resultContainer').scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    </script>
-    <!-- JavaScript External Link -->
-    <script src="js/script.js"></script>
-</body>
+        </script>
+        <!-- JavaScript External Link -->
+        <script src="js/script.js"></script>
+    </body>
 </html>
